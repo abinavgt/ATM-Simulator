@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ATM Simulator</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="atm-interface">
+    <header class="atm-header">
+      <h1>🏦 Welcome, <span id="user-name">Visitor</span></h1>
+      <p class="atm-subtitle">Please select a language to begin</p>
+    </header>
+
+    <!-- Language Selection -->
+    <div id="language-selection">
+      <button onclick="selectLanguage('English')">English</button>
+      <button onclick="selectLanguage('Hindi')">हिंदी</button>
+      <button onclick="selectLanguage('Punjabi')">ਪੰਜਾਬੀ</button>
+      <button onclick="selectLanguage('Tamil')">தமிழ்</button>
+    </div>
+
+    <!-- Login Section -->
+    <div id="login-section" style="display: none;">
+      <input type="text" id="account-number" placeholder="Enter Account Number" />
+      <button onclick="loadUser()">Submit</button>
+    </div>
+
+    <!-- Main Menu Options -->
+    <section class="atm-options" id="menu" style="display: none;">
+      <div class="option" onclick="showSection('account-details')">
+        <span>💳</span><p>Account Details</p>
+      </div>
+      <div class="option" onclick="fetchMiniStatement()">
+        <span>📊</span><p>Mini Statement</p>
+      </div>
+      <div class="option" onclick="showSection('withdraw-cash')">
+        <span>💸</span><p>Withdraw Cash</p>
+      </div>
+      <div class="option" onclick="showSection('change-pin')">
+        <span>🔑</span><p>Change PIN</p>
+      </div>
+    </section>
+
+    <!-- Account Details Section -->
+    <section class="atm-section" id="account-details" style="display: none;">
+      <h2>Account Details</h2>
+      <input type="password" id="pin-account" placeholder="Enter PIN" />
+      <button onclick="fetchAccountDetails()">Submit</button>
+      <div id="account-info"></div>
+    </section>
+
+    <!-- Withdraw Cash Section -->
+    <section class="atm-section" id="withdraw-cash" style="display: none;">
+      <h2>Withdraw Cash</h2>
+      <div class="withdraw-form">
+        <select id="currency" class="atm-input">
+          <option value="INR">🇮🇳 INR (₹)</option>
+          <option value="USD">🇺🇸 USD ($)</option>
+          <option value="EUR">🇪🇺 EUR (€)</option>
+          <option value="GBP">🇬🇧 GBP (£)</option>
+          <option value="SAR">🇸🇦 SAR (﷼)</option>
+        </select>
+        <input type="number" id="withdraw-amount" placeholder="Enter amount" class="atm-input" />
+        <input type="password" id="pin-withdraw" placeholder="Enter PIN" class="atm-input" />
+        <button onclick="submitWithdraw()">Submit</button>
+      </div>
+      <div id="withdraw-result" class="result"></div>
+      <div id="collect-section" class="result" style="text-align:center;"></div>
+    </section>
+
+    <!-- Change PIN Section -->
+    <section class="atm-section" id="change-pin" style="display: none;">
+      <h2>Change PIN</h2>
+      <input type="password" id="old-pin" placeholder="Current PIN" />
+      <input type="password" id="new-pin" placeholder="New PIN" />
+      <button onclick="changePin()">Update PIN</button>
+      <div class="result" id="pin-change-msg"></div>
+    </section>
+
+    <!-- Mini Statement Section -->
+    <section class="atm-section" id="mini-statement" style="display: none;">
+      <h2>Mini Statement</h2>
+      <input type="password" id="pin-statement" placeholder="Enter PIN" />
+      <button onclick="submitMiniStatement()">Submit</button>
+      <div id="statement"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="atm-footer">
+      <p>🔐 Secure ATM System | Celebrating Indian Heritage 🪔</p>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
